@@ -2,18 +2,14 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-<title>Header</title>
-</head>
-
 <body>
-
-	<footer class="footer" th:fragment="footer">
-		<div class="container border">
-			<div class="row">
-				<div class="text-dark col-auto mr-auto">&copy; Company Name</div>
-			</div>
+	<footer th:fragment="footer" class="main-footer">
+		<!-- To the right -->
+		<div class="pull-right hidden-xs">
+			Anything you want
 		</div>
+		<!-- Default to the left -->
+		<strong>Copyright &copy; 2018 <a th:href="@{/#}">Company</a>.</strong> All rights reserved.
 	</footer>
 
 </body>
