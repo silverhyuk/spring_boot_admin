@@ -38,4 +38,10 @@ public class WelcomeController {
     public String content(Model model) throws Exception {
         return "content";
     }
+
+    @RequestMapping(value = "multi.do", method = RequestMethod.GET)
+    public String multiTest(Model model) throws Exception {
+        welcomeService.multiThreadTest();
+        return "content";
+    }
 }

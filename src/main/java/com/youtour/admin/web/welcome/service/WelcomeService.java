@@ -3,6 +3,7 @@ package com.youtour.admin.web.welcome.service;
 import com.youtour.admin.web.welcome.dao.WelcomeMapper;
 import com.youtour.admin.web.welcome.vo.WelcomeVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class WelcomeService {
     @Autowired
     private WelcomeMapper welcomeMapper;
 
+
     public List<WelcomeVO> selectWelcomeList() throws Exception {
         WelcomeVO welcomeVO = new WelcomeVO();
         List<WelcomeVO> WelcomeList = welcomeMapper.selectWelcomeList(welcomeVO);
@@ -20,5 +22,17 @@ public class WelcomeService {
             System.out.println("name : " + vo.getName() +  " / team : " + vo.getTeam());
         }
         return WelcomeList;
+    }
+
+    @Async("fooExecutor")
+    public String multiThreadTest() throws  Exception {
+        String ret = "TEST";
+        WelcomeVO welcomeVO = new WelcomeVO();
+        List<WelcomeVO> WelcomeList = welcomeMapper.selectWelcomeList(welcomeVO);
+
+        for(WelcomeVO vo : WelcomeList) {
+            System.out.println("name : " + vo.getName() +  " / team : " + vo.getTeam());
+        }
+        return ret;
     }
 }
